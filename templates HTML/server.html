@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+
+          body {
+            background-color: rgb(46, 46, 46);
+          }
+
+          /* Define styles for the code block container */
+          .code-block-container {
+            position: relative; /* Add positioning context */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: auto;            
+            height: 100vh;
+          }
+          
+          /* Define styles for the code block */
+          pre {
+            position: relative; /* Add positioning context */
+            background-color: hsl(0, 0%, 23%);
+            border: 1px solid hsl(0, 0%, 33%);
+            border-radius: 10px; /* Add curved edges */
+            font-family: monospace;
+            font-size: 14px;
+            padding: 10px;
+            width: 50%; /* Set the width to 50% */
+            margin-top: -100px; /* Move it down by 50 pixels */
+            color: white; /* Set the text color to white */
+            white-space: pre-wrap;
+            word-wrap: break-word;
+          }
+          
+          /* Define styles for the text in the corner */
+          .text-corner {
+            position: absolute; /* Add positioning context */
+            top: 10px; /* Add top padding */
+            left: 10px; /* Add left padding */
+            font-size: 27px;
+            color: white; /* Set the text color to white */
+            font-family: monospace;       
+          }
+
+          #button1 {
+            position: absolute;
+            background-color: hsl(0, 0%, 20%);
+            border: 0px solid hsl(0, 0%, 33%);
+            top: 60px;
+            left: 10px;
+            font-size: 30px;
+            font-family: monospace;
+            padding: 40px;
+            color: white; /* Set the text color to white */
+          }
+
+          #button2 {
+            position: absolute;
+            background-color: hsl(0, 0%, 20%);
+            border: 0px solid hsl(0, 0%, 33%);
+            top: 180px;
+            left: 10px;
+            font-size: 30px;
+            font-family: monospace;
+            padding: 40px;
+            color: white; /* Set the text color to white */
+          }
+
+          #button3 {
+            position: absolute;
+            background-color: hsl(0, 0%, 20%);
+            border: 0px solid hsl(0, 0%, 33%);
+            top: 310px;
+            left: 10px;
+            font-size: 30px;
+            font-family: monospace;
+            padding: 40px;
+            color: white; /* Set the text color to white */
+          }
+          
+          #button4 {
+            position: fixed;
+            background-color: hsl(0, 0%, 20%);
+            border: 0px solid hsl(0, 0%, 33%);
+            bottom: 0;
+            left: 0;
+            font-size: 25px;
+            font-family: monospace;
+            padding: 40px;
+            color: white;
+          }
+
+          /* Define styles for the sidebar */
+          .sidebar {
+            position: fixed; /* Add positioning context */
+            top: 0;
+            left: 0;
+            width: 240px;
+            height: 100vh;
+            background-color: hsl(0, 0%, 20%);
+            color: white;
+            padding: 20px;
+          }
+          
+          body {
+            overflow: hidden;
+          }
+        </style>
+      </head>
+  <body>
+    <div class="sidebar">
+    </div>
+    <div class="text-corner" id="text-corner">
+      ^-^
+    </div>
+    <div class="code-block-container">
+      <pre>
+        <code id="type">
+            Scuffed ep is one of the best leaning tools having over 300 negative reveiws. 
+            So what are you doing go to the Download tabe and make a account today!
+          &larr; &larr; &larr; &larr; &larr;
+        </code>
+      </pre>
+    </div>
+    <button id="button1" onclick="changeText()">Home</button>
+    <button id="button2" onclick="changeText2()">Traffic</button>
+    <button id="button3" onclick="changeText3()">Download</button>
+    <button id="button4" onclick="window.location.href='http://127.0.0.1:5000/doc/home'">documentation</button>
+
+    <script>
+      // Get the code-block element
+      const codeBlock = document.getElementById("type");
+      
+      // Split the code block into individual characters
+      const chars = codeBlock.innerHTML.split("");
+      
+      // Clear the code block
+      codeBlock.innerHTML = "";
+      
+      // Loop through each character and add a delay
+      chars.forEach((char, index) => {
+        setTimeout(() => {
+          // Append the current character to the code block
+          codeBlock.innerHTML += char;
+        }, index * 25); // Adjust the delay time as desired (in milliseconds)
+      });
+
+      // Get the text corner element
+      const textCorner = document.getElementById("text-corner");
+
+      // Define the text toggling function
+      function toggleText() {
+        if (textCorner.innerHTML === "x_x") {
+          textCorner.innerHTML = "^_^";
+        } else {
+          textCorner.innerHTML = "x_x";
+        }
+      }
+
+      // Call the toggleText function every 5 seconds
+      setInterval(() => {
+        toggleText();
+        setTimeout(() => {
+          toggleText();
+        }, 230); // Wait for 0.5 seconds before toggling back
+      }, 4000); // Repeat every 5 seconds
+    </script>
+      <script>
+        function changeText() {
+          const codeBlock = document.getElementById("type");
+          const newText = "Scuffed ep is one of the best leaning tools having over 300 negative reveiws. \n        So what are you doing go to the Download tabe and make a account today!";
+          const chars = newText.split("");
+          codeBlock.innerHTML = "";
+          chars.forEach((char, index) => {
+            setTimeout(() => {
+              codeBlock.innerHTML += char;
+            }, index * 25); // Adjust the delay time as desired (in milliseconds)
+          });
+        }
+      </script>
+    <script>
+      function changeText2() {
+        const codeBlock = document.getElementById("type");
+        fetch("http://127.0.0.1:5000/ping") 
+          .then(response => response.text())
+          .then(text => {
+            const chars = text.split("");
+            codeBlock.innerHTML = "\n";
+            chars.forEach((char, index) => {
+              setTimeout(() => {
+                codeBlock.innerHTML += char;
+              }, index * 25); // Adjust the delay time as desired (in milliseconds)
+            });
+          })
+          .catch(error => console.error(error));
+      }
+    </script>
+    <script>
+        function changeText3() {
+          const codeBlock = document.getElementById("type");
+          const newText = "\n 1) download github desktop\n 2) open a code editor such as VS code (don't know if it works in other code editors)\n 3) click the file button and open a empty folder\n 4) now open the console and type git clone https://github.com/Ikeue4/scufed-EP.git \n 5) run the main python code and the request server version";
+          const chars = newText.split("");
+          codeBlock.innerHTML = "";
+          chars.forEach((char, index) => {
+            setTimeout(() => {
+              codeBlock.innerHTML += char;
+            }, index * 25); // Adjust the delay time as desired (in milliseconds)
+          });
+        }
+      </script>
+  </body>
+</html>

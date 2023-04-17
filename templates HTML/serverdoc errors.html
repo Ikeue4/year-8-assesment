@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+
+          body {
+            background-color: rgb(46, 46, 46);
+          }
+
+          /* Define styles for the code block container */
+          .code-block-container {
+            position: relative; /* Add positioning context */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: auto;            
+            height: 100vh;
+          }
+          
+          /* Define styles for the code block */
+          pre {
+            position: relative; /* Add positioning context */
+            background-color: hsl(0, 0%, 23%);
+            border: 1px solid hsl(0, 0%, 33%);
+            border-radius: 10px; /* Add curved edges */
+            font-family: monospace;
+            font-size: 14px;
+            padding: 10px;
+            width: 50%; /* Set the width to 50% */
+            margin-top: -100px; /* Move it down by 50 pixels */
+            color: white; /* Set the text color to white */
+            white-space: pre-wrap;
+            word-wrap: break-word;
+          }
+          
+          /* Define styles for the text in the corner */
+          .text-corner {
+            position: absolute; /* Add positioning context */
+            top: 10px; /* Add top padding */
+            left: 10px; /* Add left padding */
+            font-size: 27px;
+            color: white; /* Set the text color to white */
+            font-family: monospace;       
+          }
+
+          #button1 {
+            position: absolute;
+            background-color: hsl(0, 0%, 20%);
+            border: 0px solid hsl(0, 0%, 33%);
+            top: 60px;
+            left: 0px;
+            font-size: 18px;
+            font-family: monospace;
+            padding: 40px;
+            color: white; /* Set the text color to white */
+          }
+
+          #button2 {
+            position: absolute;
+            background-color: hsl(0, 0%, 20%);
+            border: 0px solid hsl(0, 0%, 33%);
+            top: 270px;
+            left: 0px;
+            font-size: 18px;
+            font-family: monospace;
+            padding: 40px;
+            color: white; /* Set the text color to white */
+          }
+
+          #button3 {
+            position: absolute;
+            background-color: hsl(0, 0%, 20%);
+            border: 0px solid hsl(0, 0%, 33%);
+            top: 500px;
+            left: 0px;
+            font-size: 18px;
+            font-family: monospace;
+            padding: 40px;
+            color: white; /* Set the text color to white */
+          }
+
+          #button1e {
+            position: absolute;
+            background-color: hsl(0, 0%, 20%);
+            border: 0px solid hsl(0, 0%, 33%);
+            top: 140px;
+            left: 70px;
+            font-size: 18px;
+            font-family: monospace;
+            padding: 5px;
+            color: white; /* Set the text color to white */
+          }
+
+          #button2e {
+            position: absolute;
+            background-color: hsl(0, 0%, 20%);
+            border: 0px solid hsl(0, 0%, 33%);
+            top: 350px;
+            left: 70px;
+            font-size: 18px;
+            font-family: monospace;
+            padding: 5px;
+            color: white; /* Set the text color to white */
+          }
+
+          #button3e {
+            position: absolute;
+            background-color: hsl(0, 0%, 20%);
+            border: 0px solid hsl(0, 0%, 33%);
+            top: 580px;
+            left: 70px;
+            font-size: 18px;
+            font-family: monospace;
+            padding: 5px;
+            color: white; /* Set the text color to white */
+          }
+
+          #button1a {
+            position: absolute;
+            background-color: hsl(0, 0%, 20%);
+            border: 0px solid hsl(0, 0%, 33%);
+            top: 390px;
+            left: 70px;
+            font-size: 18px;
+            font-family: monospace;
+            padding: 5px;
+            color: white; /* Set the text color to white */
+          }
+
+          #button4 {
+            position: fixed;
+            background-color: hsl(0, 0%, 20%);
+            border: 0px solid hsl(0, 0%, 33%);
+            bottom: 0;
+            left: 0;
+            font-size: 25px;
+            font-family: monospace;
+            padding: 40px;
+            color: white;
+          }
+          
+
+          /* Define styles for the sidebar */
+          .sidebar {
+            position: fixed; /* Add positioning context */
+            top: 0;
+            left: 0;
+            width: 240px;
+            height: 100vh;
+            background-color: hsl(0, 0%, 20%);
+            color: white;
+            padding: 20px;
+          }
+          
+          body {
+            overflow: hidden;
+          }
+        </style>
+      </head>
+  <body>
+    <div class="sidebar">
+    </div>
+    <div class="text-corner" id="text-corner">
+      ^-^
+    </div>
+    <div class="code-block-container">
+      <pre>
+        <code>
+<strong>Common errors:</strong> 
+
+    <strong>1. Import Error: this could be because of a library is not installed</strong>
+
+        1.1. Fix pip install package_name
+
+        1.2. Or install package_name --upgrade 
+
+    <strong>2. FileNotFoundError:</strong>  
+
+        2.1. Check that file names and directories are right  
+
+        2.2. Check that template_folder is right should be where the html files are 
+
+    <strong>3. Chat server full</strong> 
+
+        3.1. Add new servers by copping the code but the servers should sort clear automatically 
+
+        3.2. You can restart the server to clear the chats or if there is no one in the chat 
+
+    <strong>4. Html status errors</strong>
+
+        4.1. If <strong>404</strong> end of the address in not right 
+
+        4.2. If <strong>304</strong> Indicates that the resource has not been modified since the version specified by the request headers If-Modified-Since or If-None-Match. In such case, there is no need to retransmit the resource since the client still has a previously-downloaded copy. 
+
+        4.3. If <strong>500</strong> see what the directory is and then see if there is anything wrong 
+
+        4.4. Any other errors go to <strong>https://en.wikipedia.org/wiki/List_of_HTTP_status_codes</strong>  
+  
+        </code>
+      </pre>
+    </div>
+    <button id="button1" onclick="window.location.href='http://127.0.0.1:5000/doc/homepage'"><strong>homepage python</strong></button>
+    <button id="button2" onclick="window.location.href='http://127.0.0.1:5000/doc/flask'"><strong>server python</strong></button>
+    <button id="button3" onclick="window.location.href='http://127.0.0.1:5000/doc/assesment'"><strong>assessment python</strong></button>
+    <button id="button1e" onclick="window.location.href='http://127.0.0.1:5000/doc/homepage/errors'">homepage erorrs</button>
+    <button id="button2e" onclick="window.location.href='http://127.0.0.1:5000/doc/flask/errors'">server errors</button>
+    <button id="button3e" onclick="window.location.href='http://127.0.0.1:5000/doc/assesment/errors'">assessment errors</button>
+    <button id="button1a" onclick="window.location.href='http://127.0.0.1:5000/doc/flask/api'">server api</button>
+    <button id="button4" onclick="window.location.href='http://127.0.0.1:5000/doc/home'">home</button>
+
+    <script>
+        // Get the code-block element
+        const codeBlock = document.getElementById("type");
+        
+        // Split the code block into individual characters
+        const chars = codeBlock.innerHTML.split("");
+        
+        // Clear the code block
+        codeBlock.innerHTML = "";
+        
+        // Loop through each character and add a delay
+        chars.forEach((char, index) => {
+          setTimeout(() => {
+            // Append the current character to the code block
+            codeBlock.innerHTML += char;
+          }, index * 25); // Adjust the delay time as desired (in milliseconds)
+        });
+  
+        // Get the text corner element
+        const textCorner = document.getElementById("text-corner");
+  
+        // Define the text toggling function
+        function toggleText() {
+          if (textCorner.innerHTML === "x_x") {
+            textCorner.innerHTML = "^_^";
+          } else {
+            textCorner.innerHTML = "x_x";
+          }
+        }
+  
+        // Call the toggleText function every 5 seconds
+        setInterval(() => {
+          toggleText();
+          setTimeout(() => {
+            toggleText();
+          }, 230); // Wait for 0.5 seconds before toggling back
+        }, 4000); // Repeat every 5 seconds
+      </script>
+  </body>
+</html>
