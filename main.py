@@ -2,34 +2,37 @@ try:
     import requests
     print ("\033[32mrequests installed ✔\033[0m")
 except ImportError:
-    print("\033[The requests library is not installed ✘\033[0m")
+    print("\033[31mThe requests library is not installed ✘\033[0m")
 
 try:
     import ast
     print ("\033[32mast installed ✔\033[0m")
 except ImportError:
-    print("\033[The ast library is not installed ✘\033[0m")
+    print("\033[31mThe ast library is not installed ✘\033[0m")
 
 try:
     import sys
     print ("\033[32msys installed ✔\033[0m")
 except ImportError:
-    print("\033[The sys library is not installed ✘\033[0m")
+    print("\033[31mThe sys library is not installed ✘\033[0m")
 
 try:
     import time
     print ("\033[32mtime installed ✔\033[0m")
 except ImportError:
-    print("\033[The time library is not installed ✘\033[0m")
+    print("\033[31mThe time library is not installed ✘\033[0m")
 
 import wikipedia
 
 #checks to see if they are new or not
 #problem you only need one charater in a paswerd
 
-response = requests.get("http://localhost:5000/ping")
-server = response.text
-print("\033[32m" + server, "\033[32m✔\033[0m")
+try:
+    response = requests.get("http://localhost:5000/ping")
+    server = response.text
+    print("\033[32m" + server, "\033[32m✔\033[0m")
+except:
+    print("\033[31mcannot connect to server ✘\033[0m")
 
 
 print("^_^")

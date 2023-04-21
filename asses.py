@@ -1,6 +1,21 @@
-import time
-import sys
-import wikipedia
+try:
+    import time
+    print ("\033[32mtime installed ✔\033[0m")
+except ImportError:
+    print("\033[31mThe time library is not installed ✘\033[0m")
+
+try:
+    import sys
+    print ("\033[32msys installed ✔\033[0m")
+except ImportError:
+    print("\033[31mThe sys library is not installed ✘\033[0m")
+
+try:
+    import wikipedia
+    print ("\033[32mwikipedia installed ✔\033[0m")
+except ImportError:
+    print("\033[31mThe wikipedia library is not installed ✘\033[0m")
+
 
 print("first nations\n")
 
@@ -147,10 +162,14 @@ while True:
     elif slect == "5":
         query = input("what nation do you want to serch for?")
         results = wikipedia.search(query)
-        print(results)
-        reslesc = input("what page do you want")
-        page = wikipedia.page(reslesc)
-        print(page.content)
+        for items in results:
+            print (items)
+        reslesc = input("what page do you want ")
+        try:
+            page = wikipedia.page(reslesc)
+            print(page.content, "\n")
+        except:
+            print("error")
     elif slect == "6":
         print("quit has been selected")
         sys.exit()
