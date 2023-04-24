@@ -16,7 +16,7 @@ def send_data_CS1():
     print(formatted_string)
     data = formatted_string
     print (data)
-    file_path = 'D:/source control/year-8-assesment/test.txt'  # Replace with the path to your file
+    file_path = 'D:/source control/year-8-assesment/asses.py'  # Replace with the path to your file
     with open(file_path, 'w', encoding='utf-8') as f:
         f.write(data)
         print(f)
