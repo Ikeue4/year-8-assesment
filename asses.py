@@ -143,6 +143,15 @@ while True:#a loop that will keep runing intill i break it
             else:
                     print ("can not do this")
             print("\n")
+    elif slect == "5":
+        #search = input("what do you want me to serch for? \n")
+        #search_results = wikipedia.search(search)
+        
+        #for result in search_results:
+            #print(result)
+        
+        #article = wikipedia.page("page\n")
+        #print(article.content)
     elif slect == "6":
         print("quit has been selected")
         sys.exit()
