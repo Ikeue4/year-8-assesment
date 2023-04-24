@@ -69,7 +69,7 @@ while True:#a loop that will keep runing intill i break it
 
     elif slect == "2":
         n = ""
-       	f2 = ""
+        f2 = ""
         print("you have seletcted option 2")
         n = input("what is the name of the nation")
         nations.append(n)
@@ -144,6 +144,7 @@ while True:#a loop that will keep runing intill i break it
                     print ("can not do this")
             print("\n")
     elif slect == "5":
+        print("unavalibe on a ipad")
         #search = input("what do you want me to serch for? \n")
         #search_results = wikipedia.search(search)
         
