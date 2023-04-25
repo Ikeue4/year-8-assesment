@@ -16,13 +16,12 @@ def send_data_CS1():
     print(formatted_string)
     data = formatted_string
     print (data)
-    file_path = 'D:/source control/year-8-assesment/asses.py'  # Replace with the path to your file
+    file_path = 'D:/source control/year-8-assesment/asses.py' 
     with open(file_path, 'w', encoding='utf-8') as f:
         f.write(data)
         print(f)
-    branch_name = 'main'  # Replace with the name of the branch you want to commit to
-    commit_message = 'Update ipad'  # Replace with your own commit message
-    # Push the commit
+    branch_name = 'main'  
+    commit_message = 'Update ipad'  
     subprocess.run(['git', 'config', '--global', 'user.email', 'alexanderjw9@icloud.com'])
     subprocess.run(['git', 'config', '--global', 'user.name', 'Ikeue4'])
     subprocess.run(['git', 'add', '-A'])
