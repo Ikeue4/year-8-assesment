@@ -1,3 +1,20 @@
+'''
+== DOCUMENTAION == 
+
+    == OVER VIEW ==
+    The code is an interactive program that allows users to interact with a database of information about various First Nations (Indigenous Peoples of Australia). 
+    It presents the user with a menu of options, which include viewing a list of nations, adding a new nation, ordering the nations by their current state, viewing 
+    interesting facts about the nations, searching Wikipedia for a nation, and quitting the program.The program initializes several lists of information about each 
+    nation, including their name, state, language, and a fact about
+
+    == HOW TO FIX == 
+    1. Import Error: this could be because of a library is not installed 
+        1.1. Fix pip install package_name
+        1.2. Or install package_name --upgrade 
+
+    2. there should not be any
+
+'''
 import time #imports all libarys
 import sys
 import math

@@ -1,4 +1,4 @@
--#git updator 6000
+#git updator 6000
 
 from flask import Flask, request
 import subprocess

@@ -1,3 +1,26 @@
+'''
+== DOCUMENTATION == 
+
+    == OVER VIEW ==
+    The main page is code that interacts with a server and was inspired by education perfect. You have features like classes that allow you to see their score and chat with them. 
+    You can also make quizzes that you can upload to a server for others to play. When you get a question right you can level up, you also have a login system so all your data is saved. 
+
+    == HOW TO FIX ==
+    1. Import Error: this could be because of a library is not installed
+        1.1. Fix pip install package_name
+        1.2. Or install package_name --upgrade 
+
+    2. requests.exceptions.ConnectionError: happens because code could not connect to the server 
+        2.2. Fix check that the server is running on a local host port should be on http://localhost:5000 
+
+    3. password or name is incorrect please try again or make an account: 
+        3.1. Fix create new w account and delete other accounts 
+        3.2. check that you password is in the password.txt file and check 	that it does not have any ^: or # in it could create some errors 
+
+    4.You might get error when downloading a quiz just check that the name matches you don’t have to include the #	 
+  
+'''
+
 try:#imports the libarys if the libary is not installed there will be a ImportError and it will print that that libary is not installed
     import requests
     print ("\033[32mrequests installed ✔\033[0m")
@@ -157,100 +180,94 @@ if password_validation_status == ("succses"):#checks if the password is vaild
             if wantstoseethecode == ("Y"):#if yes prints the code
                 print("start of code\n-------------------------------\n" + output + ("\n\n-------------------------------\nend of code\n"))
             
-            runcode = input ("would you like to run this code(the code will be run inside with ast or Abstract Syntax Trees witch provides a way to parse and analyze Python code in a more controlled and secure manner)?Y/N...")
+            runcode = input ("would you like to run this code?Y/N...")#asks if the quiz should be run
 
-            if runcode == ("Y"):
-                code = output
-                parsed = ast.parse(code)
-                exec(compile(parsed, "<string>", "exec"))
+            if runcode.upper() == ("Y"):#if yes
+                code = output#code is loaded
+                parsed = ast.parse(code)#code is ast scanned 
+                exec(compile(parsed, "<string>", "exec"))#code is executed and compiled
             
-            wanttoupload = input("do you want to uplaod you quiz?Y/N...")
+            wanttoupload = input("do you want to uplaod you quiz?Y/N...")#asks if the code should be uploded
 
-            if wanttoupload == ("Y"):
-                whatisthename = input("what do you want the name of the quiz to be?...")
-                data_Q = {
+            if wanttoupload.upper() == ("Y"):#if yes
+                whatisthename = input("what do you want the name of the quiz to be?...")#asks for the name
+                data_Q = {#loads the data
                     "name":"#" + whatisthename + "^",
                     "code": output
                 }            
-                response = requests.post("http://localhost:5000/send_data_new_quiz", json=data_Q)
+                response = requests.post("http://localhost:5000/send_data_new_quiz", json=data_Q)#sends the data to the server
 
-        elif WhatToDo == ("5"):
-            response = requests.get("http://localhost:5000/send_data_ask_quiz")
-            contents = response.json()
-            formatted_list = [item[1:] for item in contents]  # remove "#" from each string
+        elif WhatToDo == ("5"):#if 5 is slected
+            response = requests.get("http://localhost:5000/send_data_ask_quiz")#ask the server for all of the quizes
+            contents = response.json()#the response is resived
+            formatted_list = [item[1:] for item in contents]  # remove "#" from each string because of the way the names are stored eg #Assinment^:
             formatted_string = ", ".join(formatted_list)  # join strings with comma separator
-            print(formatted_string)
-            print('\nplease one of the names below (includ the # but not the " and other stuff\n-------------------------------\n' + formatted_string + '\n-------------------------------')
-            whatquiz = input()
-            whatquiz = ("#" + whatquiz)
-            data_WQ = {
+            whatquiz = input('\nplease one of the names below\n-------------------------------\n' + formatted_string + '\n-------------------------------\n')#gets a input
+            whatquiz = ("#" + whatquiz)#adds th #
+            data_WQ = {#loads it in to a var
                 "quiz":whatquiz
             } 
-            response = requests.post("http://localhost:5000/send_data_quiz", json=data_WQ)
-            contents_quiz = response.text
-            loadedquiz = contents_quiz
-            print(loadedquiz)
-            runcode = input ("would you like to run this quiz in AST?Y/N...")
-            if runcode == ("Y"):
-                code = loadedquiz
-                result = exec(code)
-                print("The result is:", result)
-                '''parsed = ast.parse(code)
-                exec(compile(parsed, "<string>", "exec"))'''
+            response = requests.post("http://localhost:5000/send_data_quiz", json=data_WQ)#sends the equest to the server
+            code = response.text#get the return form the server
+            print(code)#prints the quiz
+            runcode = input ("would you like to run this quiz?Y/N...")#asks if the quiz should be run
+            if runcode.upper() == ("Y"):#if the code should be run
+                result = exec(code)#executs the code does not scan it because to be uploaded to the server the code is scaned
+                print("The result is:", result)# prints the executed code
 
-        elif WhatToDo == ("3"):
-            data_VC = {
+        elif WhatToDo == ("3"):#if 3 is slected
+            data_VC = {#loads the name and password
                 "name": name,
                 "password": password
             }
-            response = requests.post("http://localhost:5000/send_data_view_class", json=data_VC)
-            poepleinclass = response.text
-            print ("\n-------------------------------\n" + "class\n-------------------------------\n" + poepleinclass)
+            response = requests.post("http://localhost:5000/send_data_view_class", json=data_VC)# sends the data to the server
+            poepleinclass = response.text#gets the response
+            print ("\n-------------------------------\n" + "class\n-------------------------------\n" + poepleinclass)#prints the people in the class
 
-        elif WhatToDo == ("6"):
-            sys.exit()
+        elif WhatToDo == ("6"):#if option 6
+            sys.exit()#quits
         
-        elif WhatToDo == ("7"):
-            data_CH = {
+        elif WhatToDo == ("7"):#if 7 selected
+            data_CH = {# loads the name and password
                 "name": name,
                 "password": password
             }
-            response = requests.post("http://localhost:5000/class_chat_open", json=data_CH)
-            printstat = response.text
-            if printstat == "servers full pleses wait":
+            response = requests.post("http://localhost:5000/class_chat_open", json=data_CH)#sends it to the server
+            printstat = response.text#gets the response
+            if printstat == "servers full pleses wait":#if the servers are full 
                 print (printstat)
-                time.sleep(4)
+                time.sleep(4)#waits so that the user can try again
             else:
-                print ("you are in class", printstat)
-                URL = "http://localhost:5000/" + printstat
-                print (URL)
-                URL2 = URL + "r"
-                retur = "joined"
-                data_CHN = {
+                print ("you are in server", printstat)#prints the server they have been assined to
+                URL = "http://localhost:5000/" + printstat#sets what the new url will be
+                print (URL)#prints it for error checking
+                URL2 = URL + "r"#sets the read url
+                retur = "joined"#tells the server that you have joined 
+                data_CHN = {#gives the server your name and the joined status
                     "user": name,
                     "mess": retur
                 }
-                txt = ""
-                while True:
-                    print("\n-------------------------------" + txt + "\nto exit type 1 2 to refresh" + "\n-------------------------------")
-                    retur = input("")
-                    if retur == "1":
-                        data_CHD = {
+                txt = ""#clears the text var
+                while True:#a loop that we can break
+                    print("\n-------------------------------" + txt + "\nto exit type 1 2 to refresh" + "\n-------------------------------")#prints the text varible
+                    retur = input()
+                    if retur == "1":#if the user wants to exit
+                        data_CHD = {#loads the data
                             "name": name,
                             "password": password
                         }
-                        response = requests.post("http://localhost:5000/class_chat_close", json=data_CHD)
-                        break
-                    elif retur == "2":
-                        response = requests.get(URL2)
-                        txt = response.text
+                        response = requests.post("http://localhost:5000/class_chat_close", json=data_CHD)#tells the server that you have left that server and if there is no one left then it can be closed
+                        break#breaks the loop
+                    elif retur == "2":#if 2 selected 
+                        response = requests.get(URL2)#it will request a refresh from the server
+                        txt = response.text#gets the response
                     else:
-                        data_CHN = {
+                        data_CHN = {#will load what has been sent in to a var
                             "user": name,
                             "mess": retur
                         }
-                        response = requests.post(URL, json=data_CHN)
-                        txt = response.text
+                        response = requests.post(URL, json=data_CHN)#sends the new mesage
+                        txt = response.text#gets the response
                     
 else:
     sys.exit()

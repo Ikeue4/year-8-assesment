@@ -1,3 +1,55 @@
+'''
+== DOCUMENTAION == 
+
+    == OVER VIEW == 
+    This code sets up a Flask server with several routes for handling user data. It first checks if necessary libraries are installed and prompts the user to create 
+    two files for storing data. It then defines routes for sending and receiving user data, including checking passwords, writing new passwords, updating user scores, 
+    and changing user classes.
+
+    == HOW TO FIX == 
+    1. Import Error: this could be because of a library is not installed
+        1.1. Fix pip install package_name
+        1.2. Or install package_name --upgrade 
+
+    2. FileNotFoundError: 
+        2.1. Check that file names and directories are right  
+        2.2. Check that template_folder is right should be where the html files are 
+
+    3. Chat server full 
+        3.1. Add new servers by copping the code but the servers should sort clear automatically 
+        3.2. You can restart the server to clear the chats or if there is no one in the chat 
+
+    4. Html status errors
+        4.1. If 404 end of the address in not right 
+        4.2. If 304 Indicates that the resource has not been modified since the version specified by the request headers If-Modified-Since or If-None-Match. In such case, 
+             there is no need to retransmit the resource since the client still has a previously-downloaded copy. 
+        4.3. If >500 see what the directory is and then see if there is anything wrong 
+        4.4. Any other errors go to https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
+
+    == API == 
+    How to use the API in your own programs:
+
+        1. Import requests you might need to pip install it
+
+        2.Start off by ping the server with  
+            Response = requests.get("http://localhost:5000/ping")
+            Server = response.text 
+            Print(server) 
+
+        3. Next you need to understand how the servers work. For most of the functions you need to give the name and sometimes the password this allows the server to identify the user. 
+
+        4.Lets say that you want to make see what level a account is first you will have to assine the data that will be sent this can be done like this  
+            Data_N = { 
+                    "name": name, 
+                    "password": password 
+                } 
+                response = requests.post<strong>("http://localhost:5000/send_data_level", json=data_N)</strong> 
+            Server = response.text 
+            Print(server) 
+
+        5. This is the basic way that the server work but there are exceptions to this
+
+'''
 try:
     from flask import Flask, request, jsonify, make_response, render_template
     print ("flask installed ✔")
@@ -43,7 +95,7 @@ chats1 = ""
 chats2 = ""
 chats3 = ""
 
-app = Flask(__name__, template_folder='D:\\source control\\beta\\templates HTML')
+app = Flask(__name__, template_folder='templates HTML')
 CORS(app)
 
 @app.route("/send_data_log", methods=["POST"])
