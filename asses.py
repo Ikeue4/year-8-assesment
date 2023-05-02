@@ -45,9 +45,9 @@ language = ['Yankunytjatjara', 'Anindilyakwa', 'Wilk mungkan', 'Kala Lagaw Ya', 
 
 while True:#a loop that will keep runing intill i break it
     main()#prints the main menu
-    slect = input("enter 1-6")#gets a input from the user  
+    slect = int(input("enter 1-6\n"))#gets a input from the user  
    
-    if slect == "1":#an if statment that if one is selected it will do what is indented below it 
+    if slect == 1:#an if statment that if one is selected it will do what is indented below it 
         page = 1#sets the variables needed
         pos = 0
         nextpage = ""
@@ -83,7 +83,7 @@ while True:#a loop that will keep runing intill i break it
                     print ("can not do this")#if every thing it false this prints
             print("\n")#prints a few new line
 
-    elif slect == "2":# if option 2 is selected
+    elif slect == 2:# if option 2 is selected
         n = ""#sets variables
         f2 = ""
         n = input("what is the name of the nation:\n")#gets a input for the nation
@@ -104,9 +104,9 @@ while True:#a loop that will keep runing intill i break it
                 print("please enter Y/N")
         Fact.append(n)#adds the fact or facts to the list
 
-    elif slect == "3":
+    elif slect == 3:
     	
-        stat1 = input("what stat do you want to serch? New South Wales, Queensland, South Australia, Tasmania, Victoria, and Western Australia")#gets a input for what state to search for
+        stat1 = input("what state do you want to serch? New South Wales, Queensland, South Australia, Tasmania, Victoria, and Western Australia\n")#gets a input for what state to search for
         print("---", stat1, "---\n")#prints --- Queensland --- for example
         positions = []# sets position variable
         for i in range(len(state)):#for each item in range of length of state
@@ -114,13 +114,13 @@ while True:#a loop that will keep runing intill i break it
                 positions.append(i)
 
         if positions:#if one is found then 
-                for pos in positions:#for every item in positions we get there poitions then we print that same position in nations
+                for pos in positions:#for every item in positions we get there poitions then we print that  same position in nations
                     print(nations[pos] + "\n")
         else:#if no items in the list nations match stat1 then this prints
             print("no nations in " + stat1 + " listed")
         time.sleep(1)#waits 1 second
 
-    elif slect == "4":
+    elif slect == 4:
         page = 1#sets variables
         pos = 0
         printstr = ""
@@ -153,7 +153,7 @@ while True:#a loop that will keep runing intill i break it
             else:
                 print ("can not do this")#if non applie then this is printed
             print("\n")#add 2 new lines
-    elif slect == "5":#if 5 is selected
+    elif slect == 5:#if 5 is selected
         try:#lets us use wikipeadia to search for other tribes but the libary can't be downloaded on all divices
             search = input("what do you want me to serch for? \n")#gets a input for what to search for
             search_results = wikipedia.search(search)#does a basic seach using the wikipeadia api will give you a list of pages
@@ -165,7 +165,7 @@ while True:#a loop that will keep runing intill i break it
             print(article.content)
         except: 
             print("unavalibe on a ipad or libary not installed")#can not be used with pythonista
-    elif slect == "6":#if 6 is slected
+    elif slect == 6:#if 6 is slected
         print("quit has been selected")
         sys.exit()#uses system to exit will work on any divice
     else:

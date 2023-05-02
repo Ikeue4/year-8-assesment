@@ -51,7 +51,8 @@
 
 '''
 try:
-    from flask import Flask, request, jsonify, make_response, render_template
+    from flask import Flask, request, jsonify, make_response, render_template, send_file, Response
+    import io
     print ("flask installed ✔")
 except ImportError:
     print("The flask library is not installed ✘")
@@ -95,7 +96,7 @@ chats1 = ""
 chats2 = ""
 chats3 = ""
 
-app = Flask(__name__, template_folder='templates HTML')
+app = Flask(__name__, template_folder='templates HTML', static_folder='images')
 CORS(app)
 
 @app.route("/send_data_log", methods=["POST"])
@@ -459,8 +460,15 @@ def ping():
     return ping, 200
 
 @app.errorhandler(404)
-def not_found_error(error):
-    return 'Page not found', 404
+def page_not_found(e):
+    # Render the custom 404.html template with the 404 error message
+    return render_template('404.html'), 404
+
+@app.route('/image')
+def get_image():
+    with open('images/404.png', 'rb') as f:
+        img_bytes = io.BytesIO(f.read())
+    return send_file(img_bytes, mimetype='image/png')
 
 @app.route('/home')
 def htmlhome():
