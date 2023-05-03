@@ -1,2 +1,2 @@
 
-            else:#it will ask again if none are true
+        for i in range(len(self.stateli)):

@@ -26,6 +26,7 @@ except:
 
 print("first nations\n")
 
+
 def main():#sets the defonition of the menu
     print("- menu -")
     print("1. view lis of nations")
@@ -35,16 +36,18 @@ def main():#sets the defonition of the menu
     print("5. serch wikipedia for nation")
     print("6. quit")
 
+
 def match_input(possible_inputs):
     user_input = input("Enter your input: ")
     while user_input not in possible_inputs:
         closest_match = difflib.get_close_matches(user_input, possible_inputs, n=1)
         if closest_match:
             suggestion = closest_match[0]
-            confirm_suggestion = input(f"Did you mean '{suggestion}' instead? [y/n] ")
+            confirm_suggestion = input(f"Did you mean '{suggestion}' instead? Y/N ")
             if confirm_suggestion.lower() == "y":
                 return suggestion
     return user_input
+
 
 
 class Nation:
@@ -76,6 +79,8 @@ class Nation:
             else:
                 print("Please enter Y/N.")
 
+
+
 class Sort:
     def __init__(self, nations, state, possible_inputs):
         self.nationsli = nations
@@ -83,8 +88,12 @@ class Sort:
         self.possible = possible_inputs
         self.result = ""
 
+
     def search_state1(self):
-        print("what state do you want to search? New South Wales, Queensland, South Australia, Tasmania, Victoria, and Western Australia \n")
+        stateprint = ""
+        for i in self.possible:
+                stateprint = stateprint + i + ", "
+        print(f"what state do you want to search? {stateprint} \n")
         stat1 = match_input(self.possible)
         print("---", stat1, "---\n")
         positions = []
@@ -99,6 +108,7 @@ class Sort:
         else:
             self.result = ("no nations in " + stat1 + " listed")
             self.print_result()
+
 
     def search_state2(self):
         
@@ -119,6 +129,7 @@ class Sort:
 
             prev_letter = first_letter
     
+
     def search_state3(self):
         id = 0
         for item in self.nationsli:
@@ -126,16 +137,20 @@ class Sort:
             self.print_result()
             id += 1
     
+
     def search_state4(self):
         idf = int(input("id: "))
         self.result = (self.nationsli[idf])
         self.print_result()
+
 
     def print_result(self):
         try:
             print(self.result)
         except:
             print("there was an error with the result")
+
+
 
 class printpage:
     def __init__(self, nations, state, fact, language, typegen):
@@ -149,6 +164,7 @@ class printpage:
         self.nextpage = ""
         self.pos = 0
         self.trupages = 0
+
 
     def makepage(self):
         self.page = 1#sets the variables needed
@@ -185,6 +201,7 @@ class printpage:
             else:
                 print()
 
+
     def pagedeal(self):
         print("to quit press 0")
         nextpage = input("< " + str(self.page) + " >")#gets a input for < 1 > 
@@ -202,12 +219,12 @@ class printpage:
         self.print_result()
         print("\n")#prints a few new line
 
+
     def print_result(self):
         try:
             print(self.result)
         except:
             print("there was an error with the result")
-
 
     
 possible_inputs = []
@@ -221,9 +238,16 @@ fact = ['population of 455', '80 per cent of there annual rainfall occurs in the
 
 language = ['Yankunytjatjara', 'Anindilyakwa', 'Wilk mungkan', 'Kala Lagaw Ya', 'Ngaanyatjarra', 'Ngemba', 'Ayapathu', 'Bardi', 'Meriam Mer', 'Kala lagaw Ya', 'Gamilaraay', "Kuuky Ya'u", 'Yolngu Matha']  
 
+
 while True:#a loop that will keep runing intill i break it
-    main()#prints the main menu
-    slect = int(input("enter 1-6\n"))#gets a input from the user  
+    while True:
+        main()#prints the main menu
+        try:
+            slect = int(input("enter 1-6\n"))#gets a input from the user 
+            break 
+        except:
+            print("was not a vaild input")
+            time.sleep(2)
    
     if slect == 1:#an if statment that if one is selected it will do what is indented below it
         
@@ -233,17 +257,18 @@ while True:#a loop that will keep runing intill i break it
         
 
     elif slect == 2:# if option 2 is selected
-        
-        
         my_nation = Nation(nations, state, fact, language)
         my_nation.get_input()
 
     elif slect == 3:
     	
         searchm = input("search method: ")
-
+        
         if searchm == "1":
-            possible_inputs = ['New South Wales', 'Queensland', 'South Australia', 'Tasmania',' Victoria', 'Western Australia']
+            possible_inputs = []
+            for i in state:
+                if i not in possible_inputs:
+                    possible_inputs.append(i)
             my_sort = Sort(nations, state, possible_inputs)
             my_sort.search_state1()
             time.sleep(1)
