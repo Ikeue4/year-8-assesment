@@ -15,6 +15,7 @@
     2. there should not be any
 
 '''
+
 import time #imports all libarys
 import sys
 import math
@@ -261,31 +262,36 @@ while True:#a loop that will keep runing intill i break it
         my_nation.get_input()
 
     elif slect == 3:
-    	
-        searchm = input("search method: ")
-        
-        if searchm == "1":
-            possible_inputs = []
-            for i in state:
-                if i not in possible_inputs:
-                    possible_inputs.append(i)
-            my_sort = Sort(nations, state, possible_inputs)
-            my_sort.search_state1()
-            time.sleep(1)
-        elif searchm == "2":
-            my_sort = Sort(nations, state, possible_inputs)
-            my_sort.search_state2()
-            time.sleep(1)
-        elif searchm == "3":
-            my_sort = Sort(nations, state, possible_inputs)
-            my_sort.search_state3()
-            time.sleep(1)
-        elif searchm == "4":
-            my_sort = Sort(nations, state, possible_inputs)
-            my_sort.search_state4()
-            time.sleep(1)
-        else:
-            print('enter vaild response')
+
+    	while True:
+            searchm = input("search method, 1 search by present nation, 2 A-Z, 3 show ids, 4 seach by id: ")
+
+            if searchm == "1":
+                possible_inputs = []
+                for i in state:
+                    if i not in possible_inputs:
+                        possible_inputs.append(i)
+                my_sort = Sort(nations, state, possible_inputs)
+                my_sort.search_state1()
+                time.sleep(1)
+                break
+            elif searchm == "2":
+                my_sort = Sort(nations, state, possible_inputs)
+                my_sort.search_state2()
+                time.sleep(1)
+                break
+            elif searchm == "3":
+                my_sort = Sort(nations, state, possible_inputs)
+                my_sort.search_state3()
+                time.sleep(1)
+                break
+            elif searchm == "4":
+                my_sort = Sort(nations, state, possible_inputs)
+                my_sort.search_state4()
+                time.sleep(1)
+                break
+            else:
+                print('enter vaild response')
 
     elif slect == 4:
         
