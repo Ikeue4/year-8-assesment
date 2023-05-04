@@ -236,13 +236,13 @@ class printpage:#defines the class print page
 possible_inputs = []#clears the list of possible inputs
 
 #sets the infomation lists
-nations = ['Yankuntjatjara', 'Anguragu', 'Wik', 'Badulgal', 'Ngaanyatjarra', 'Ngemba', 'Ayapathu', 'Bardi', 'Meriam Mer', 'Kaurareg', 'Gamilaraay', "Kuuku Ya'u", 'Yolŋu people']    
+nations = ['Yankuntjatjara', 'Anguragu', 'Wik', 'Badulgal', 'Ngaanyatjarra', 'Ngemba', 'Ayapathu', 'Bardi', 'Meriam Mer', 'Kaurareg', 'Gamilaraay', "Kuuku Ya'u", 'Yolŋu people', 'Anathangayth ', 'Barkindji ', 'Martu people ', 'Bagala people ', 'Mantiyupwi Clan ', 'Gunggandji people', 'Gunggandji people']    
 
-state = ['South Australia', 'Northern Territory', 'Queensland', 'Queensland', 'Northern Territory', 'New South Wales', 'Queensland', 'Western Australia', 'Northern Territory', 'Queensland', 'New South Wales', 'Queensland', 'Northern Territory']
+state = ['South Australia', 'Northern Territory', 'Queensland', 'Queensland', 'Northern Territory', 'New South Wales', 'Queensland', 'Western Australia', 'Northern Territory', 'Queensland', 'New South Wales', 'Queensland', 'Northern Territory', 'Queensland', 'New South Wales', 'Western Australia', 'Northern Territory', 'Northern Territory', 'Queensland', 'Northern Territory']
 
-fact = ['population of 455', '80 per cent of there annual rainfall occurs in the wet season', 'Population of 1,269', 'they live on the Torres Strait islands', 'population 153', 'The majority of the town that the Ngemba are located at are aboriginal', '', 'There region has been involved in mining by rio tinto', 'They are near the Great Barrier Reef', 'population 374', 'located in Lightning Ridge', 'Located 800 kilometres north of cairns', '']
+fact = ['population of 455', '80 per cent of there annual rainfall occurs in the wet season', 'Population of 1,269', 'they live on the Torres Strait islands', 'population 153', 'The majority of the town that the Ngemba are located at are aboriginal', 'Coen (the community where the treble is located) is a small community situated in central Cape York in Far North Queensland, 580 kilometres north of Cairns. ', 'There region has been involved in mining by rio tinto', 'They are near the Great Barrier Reef', 'population 374', 'located in Lightning Ridge', 'Located 800 kilometres north of cairns', 'Located 800 kilometres north of cairns', 'Population of 3899 in the area they are in', 'Population of 452 in the area they are in', 'Population of 300 in the area they are in', 'Population of 531 in the area they are in, 95.7% Indigenous', 'Population of 1,563 in the area they are in', 'Yarrabah (the community where the treble is located) is an Aboriginal community located 55 kilometres east of Cairns in Far North Queensland', 'Yirrkala (the community where the treble is located) is a coastal community in the East Arnhem region of the Northern Territory and is about 18kms south-east of Nhulunbuy.']
 
-language = ['Yankunytjatjara', 'Anindilyakwa', 'Wilk mungkan', 'Kala Lagaw Ya', 'Ngaanyatjarra', 'Ngemba', 'Ayapathu', 'Bardi', 'Meriam Mer', 'Kala lagaw Ya', 'Gamilaraay', "Kuuky Ya'u", 'Yolngu Matha']  
+language = ['Yankunytjatjara', 'Anindilyakwa', 'Wilk mungkan', 'Kala Lagaw Ya', 'Ngaanyatjarra', 'Ngemba', 'Ayapathu', 'Bardi', 'Meriam Mer', 'Kala lagaw Ya', 'Gamilaraay', "Kuuky Ya'u", 'Yolngu Matha', 'Anathangayth ', 'Barkindji ', 'Martuwangka ', 'Rembarranga ', 'Modern Tiwi ', 'Gunggandj ', 'Yolngu Matha ']  
 
 
 while True:#a loop that will keep runing intill i break it

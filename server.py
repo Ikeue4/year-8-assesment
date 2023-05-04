@@ -426,6 +426,9 @@ def send_data_CS1r():
     global chats1
     return chats1
 
+"""
+    This is a Flask route that listens for POST requests to the "/CS_2" endpoint. When a POST request is received, it checks the global variable `CS_2`. If `CS_2` is 0, it initializes the global variable `chats2` to an empty string. If `CS_2` is not 0, it retrieves the JSON data from the POST request, formats it into a string, and appends it to the `chats2` variable. Finally, it returns the `chats2` variable.
+    """
 @app.route("/CS_2", methods=["POST"])
 def send_data_CS2():
     global CS_2
@@ -442,11 +445,17 @@ def send_data_CS2():
         print (chats2)
         return chats2
 
+"""
+    This is a Flask route that listens for GET requests to the "/CS_2r" endpoint. When a GET request is received, it returns the value of the global variable "chats2".
+    """
 @app.route("/CS_2r", methods=["GET"])
 def send_data_CS2r():
     global chats2
     return chats2
 
+"""
+    This is a Flask route that listens for POST requests to the "/CS_3" endpoint. When a POST request is received, it checks the global variable `CS_3`. If `CS_3` is 0, it initializes the global variable `chats3` to an empty string. If `CS_3` is not 0, it retrieves the JSON data from the POST request, formats it into a string, and appends it to the `chats3` variable. Finally, it returns the `chats3` variable.
+    """
 @app.route("/CS_3", methods=["POST"])
 def send_data_CS3():
     global CS_3
@@ -463,11 +472,17 @@ def send_data_CS3():
         print (chats3)
         return chats3
 
+"""
+    This is a Flask route that listens for GET requests to the "/CS_3r" endpoint. When a GET request is received, it returns the value of the global variable "chats3".
+    """
 @app.route("/CS_3r", methods=["GET"])
 def send_data_CS3r():
     global chats3
     return chats3
 
+"""
+    This is a Flask route that handles a POST request to close a class chat. It takes in the data from the request, which includes the name and password of the user attempting to close the chat. It then reads from a file containing a list of name-password pairs, and checks if the provided name-password pair matches any in the file. If there is a match, it retrieves the corresponding class value. It then checks if the class value matches any of the three class values stored in global variables. If there is a match, it decrements the corresponding class count and clears the corresponding chat history if the count reaches 0. Finally, it returns a string indicating success or failure.
+    """
 @app.route("/class_chat_close", methods=["POST"])
 def send_data_COD():
     global CS_1
@@ -514,12 +529,19 @@ def send_data_COD():
         return "bye"
     else:
         return "something went wrong"
-    
+
+"""
+    This is a Flask route that returns a string indicating that the server is up and running.
+    @return A string indicating that the server is up and running.
+    """
 @app.route("/ping", methods=["GET"])
 def ping():
     ping = "!server up! running on http://127.0.0.1:5000"
     return ping, 200
 
+"""
+    This code defines several routes for a Flask web application. It also defines a custom 404 error handler. And html rendering
+    """
 @app.errorhandler(404)
 def page_not_found(e):
     # Render the custom 404.html template with the 404 error message
@@ -568,5 +590,8 @@ def htmldocumentationserverapi():
     return render_template('serverdoc api.html')
 
 
+"""
+   This code snippet is checking if the current module is the main module being run. If it is, it runs the Flask application with debugging turned off.
+   """
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)

@@ -1,2 +1,2 @@
 
-        for i in range(len(self.stateli)):
+        print("\n")#prints a few new line
