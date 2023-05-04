@@ -51,6 +51,9 @@
 
 '''
 try:
+    """
+    This code block is checking if certain libraries are installed. It checks for Flask, sys, random, and flask_cors. If any of these libraries are not installed, it prints a message indicating that the library is not installed. If the library is installed, it prints a message indicating that the library is installed.
+    """
     from flask import Flask, request, jsonify, make_response, render_template, send_file, Response
     import io
     print ("flask installed ✔")
@@ -78,6 +81,9 @@ except ImportError:
 print("^_^")
 
 while True:
+    """
+    This code prompts the user to create two files on their computer, one to hold passwords and profiles, and one to save quizzes that people upload. The user is asked if they want to proceed and if they enter "N", the program exits. If they enter "Y", the program continues. If they enter anything else, they are prompted to enter "Y" or "N" again.
+    """
     createfile = input("This code needs to make two files on your computer: one to hold passwords and profiles, and one to save quizzes that people upload. This server can only be accessed from your computer and cannot be seen by other computers. Do you want to proceed? (Y/N)")
     if createfile.lower() == "n":
         sys.exit()
@@ -86,6 +92,7 @@ while True:
     else:
         print("Invalid input. Please enter Y or N.")
 
+#setts variables
 CS_1 = 0
 CS_2 = 0
 CS_3 = 0
@@ -96,9 +103,21 @@ chats1 = ""
 chats2 = ""
 chats3 = ""
 
+
+"""
+    Create a Flask application instance and enable Cross-Origin Resource Sharing (CORS).
+    @param __name__ - the name of the application
+    @param template_folder - the folder containing the HTML templates
+    @param static_folder - the folder containing the static files (e.g. images, CSS, JS)
+    @return The Flask application instance.
+    """
 app = Flask(__name__, template_folder='templates HTML', static_folder='images')
 CORS(app)
 
+"""
+    This is a Flask route that receives a POST request with JSON data containing a name and password. It then checks if the name and password combination is present in a file called "passwords.txt". If it is, it returns a success message with a 200 status code. If it is not, it returns a failure message with a 300 status code.
+    @return A success or failure message with a status code.
+    """
 @app.route("/send_data_log", methods=["POST"])
 def send_data_P():
     data_P = request.get_json()
@@ -117,6 +136,9 @@ def send_data_P():
         passwordvaild = "fail"
         return jsonify(passwordvaild), 300
     
+"""
+    This is a Flask route that receives a POST request with JSON data. The JSON data is expected to have a 'name' and 'password' field. The function extracts these fields from the JSON data, formats them into a string, and prints the string to the console. It then generates a random number between 100 and 1000, appends the formatted string and the random number to a file called "passwords.txt", and returns a success message with a 200 status code.
+    """
 @app.route("/send_data_log_new", methods=["POST"])
 def send_data_NA():
     data_P_New = request.get_json()
@@ -127,13 +149,19 @@ def send_data_NA():
         f.write("\n" + formatted_string + "; 0^ " + str(random_number))
     return "Data received and written to file", 200
 
-
+"""
+    This is a Flask route that returns the contents of a file named "scoretest.txt" when the "/send_file" endpoint is accessed.
+    @return The contents of the file named "scoretest.txt"
+    """
 @app.route("/send_file")
 def send_file():
     with open("scoretest.txt", "r") as f:
         contents = f.read()
     return contents
 
+"""
+    This is a Flask route that listens for a POST request to "/send_data_level". The request should contain JSON data with a "name" and "password" field. The function reads a file called "passwords.txt" and searches for a line that contains the formatted string "{name}: {password}". If found, it splits the line by ";" and extracts the last part. It then splits the last part by "^" and extracts the first part. This value is printed and returned. If the search string is not found, the function returns "Not Found".
+    """
 @app.route("/send_data_level", methods=["POST"])
 def send_data_L():
     data_P_N = request.get_json()
@@ -151,6 +179,10 @@ def send_data_L():
                 return value1
     return "Not Found"
 
+"""
+    This is a Flask route that receives a POST request with JSON data containing a name, password, and score. It then formats the data into a string and appends it to a file called "passwords.txt". If the name already exists in the file, it updates the score by adding the new score to the old score. Finally, it returns a success response. 
+    @return A Flask response object.
+    """
 @app.route("/send_data_score", methods=["POST"])
 def send_data_NL():
     data_P_NL = request.get_json()
@@ -184,6 +216,10 @@ def send_data_NL():
     response = make_response("Success", 200)
     return response
 
+"""
+    This is a Flask route that receives data via a POST request and writes it to a file. The data is expected to be in JSON format and contain a name, password, and class. The function reads from a file called "passwords.txt" and searches for a line that matches the name and password in the received data. If a match is found, the class is updated and the file is rewritten with the updated information. The function returns a success message with a status code of 200.
+    @return A success message with a status code of 200.
+    """
 @app.route("/send_data_new_class", methods=["POST"])
 def send_data_C():
     data_P_new_C = request.get_json()
@@ -206,6 +242,10 @@ def send_data_C():
 
     return "Data received and written to file", 200
 
+"""
+    This is a Flask route that receives a POST request with JSON data containing a name and code for a new quiz. The function then formats the data into a string, writes it to a file named "quiz.txt", and returns a success message with a 200 status code.
+    @return A success message with a 200 status code.
+    """
 @app.route("/send_data_new_quiz", methods=["POST"])
 def send_data_Q():
     data_new_Q = request.get_json()
@@ -216,6 +256,10 @@ def send_data_Q():
         f.write('\n' + formatted_string + '\n|')
     return "succses", 200
 
+"""
+    This is a Flask route that reads data from a file named "quiz.txt" and searches for lines that start with the "^" character. It then extracts the first part of each line (before the "^" character) and appends it to a list called "values". If "values" is not empty, it returns the list. Otherwise, it returns the string "error".
+    @return a list of values or the string "error"
+    """
 @app.route("/send_data_ask_quiz", methods=["GET"])
 def send_data_AQ():
     filename = "quiz.txt"
@@ -232,6 +276,10 @@ def send_data_AQ():
     else:
         return "error"
 
+"""
+    This is a Flask route that receives a POST request with JSON data containing a quiz. The quiz is extracted from the JSON data and formatted into a string. The quiz is then compared to a text file containing quizzes. If a matching quiz is found, the lines between the matching quiz and the next quiz (indicated by a "|" character) are extracted and returned as a string. The string is returned with a 200 status code.
+    @return The quiz and a 200 status code
+    """
 @app.route("/send_data_quiz", methods=["POST"])
 def send_data_WQ():
     data_new_WQ = request.get_json()
@@ -259,6 +307,10 @@ def send_data_WQ():
                 sendback = '\n'.join(sendback_lines)
     return sendback, 200
 
+"""
+    This is a Flask route that receives a POST request with JSON data. It then extracts the name and password from the JSON data and searches for a matching entry in a file called "passwords.txt". If a match is found, it extracts a value from the line and uses it to search for another line in the file. If a match is found for the value, it extracts a substring from the line and appends it to a list of results. Finally, it returns a comma-separated string of the results.
+    @return a comma-separated string of the results
+    """
 @app.route("/send_data_view_class", methods=["POST"])
 def send_data_VC():
     data_new_VC = request.get_json()
@@ -290,6 +342,9 @@ def send_data_VC():
             print(results)
     return ', '.join(results)
 
+"""
+    This is a Flask route that receives data from a client and processes it. The data is expected to be in JSON format. The function first reads a file called "passwords.txt" and searches for a line that matches the name and password sent by the client. If a match is found, the function assigns the client to one of three "class servers" (CS_1, CS_2, or CS_3) based on availability and the class associated with the password. The function then increments the count for the chosen class server and returns the name of the server to the client. If all class servers are full, the function returns a message indicating that the servers are full and the client should wait.
+    """
 @app.route("/class_chat_open", methods=["POST"])
 def send_data_CO():
     global CS_1
@@ -344,6 +399,9 @@ def send_data_CO():
         print ("servers full")
         return "servers full pleses wait"
 
+"""
+    This is a Flask route that listens for POST requests on the "/CS_1" endpoint. When a POST request is received, it checks the global variable `CS_1`. If `CS_1` is 0, it initializes the global variable `chats1` to an empty string. If `CS_1` is not 0, it retrieves the JSON data from the request, formats it into a string, and appends it to the `chats1` variable. Finally, it returns the `chats1` variable.
+    """
 @app.route("/CS_1", methods=["POST"])
 def send_data_CS1():
     global CS_1
@@ -360,6 +418,9 @@ def send_data_CS1():
         print (chats1)
         return chats1
 
+"""
+    This is a Flask route that listens for GET requests on the "/CS_1r" endpoint. When a GET request is received, it returns the value of the global variable "chats1".
+    """
 @app.route("/CS_1r", methods=["GET"])
 def send_data_CS1r():
     global chats1
