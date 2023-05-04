@@ -57,7 +57,11 @@ try:
 except ImportError:
     print("\033[31mThe time library is not installed ✘\033[0m")
 
-import wikipedia
+try:
+    import threading
+    import wikipedia
+except:
+    print("threading library is not installed or wikipedia is not installed")
 
 try:#trys to connect to the server on local host
     response = requests.get(ourl+"/ping")
