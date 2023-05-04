@@ -11,7 +11,7 @@
         1.2. Or install package_name --upgrade 
 
     2. requests.exceptions.ConnectionError: happens because code could not connect to the server 
-        2.2. Fix check that the server is running on a local host port should be on http://localhost:5000 
+        2.2. Fix check that the server is running on a local host port should be on ourl 
 
     3. password or name is incorrect please try again or make an account: 
         3.1. Fix create new w account and delete other accounts 
@@ -21,6 +21,18 @@
   
 '''
 
+while True:
+    off = input("do you want to access the server on repel it n = local? y/n: ")
+    if off == "y":
+        ourl = 'https://main.poeple.repl.co'
+        break
+        
+    elif off == "n":
+        ourl = 'http://127.0.0.1:5000'
+        break
+        
+    else:
+        print("not valid option")
 try:#imports the libarys if the libary is not installed there will be a ImportError and it will print that that libary is not installed
     import requests
     print ("\033[32mrequests installed ✔\033[0m")
@@ -48,7 +60,7 @@ except ImportError:
 import wikipedia
 
 try:#trys to connect to the server on local host
-    response = requests.get("http://localhost:5000/ping")
+    response = requests.get(ourl+"/ping")
     server = response.text
     print("\033[32m" + server, "\033[32m✔\033[0m")
 except:
@@ -67,7 +79,7 @@ while True:#a while true loop that the account login is inbeted in
             "name": name,
             "password": password
         }
-        response = requests.post("http://localhost:5000/send_data_log", json=data_P)#send that variable to the server with a post request
+        response = requests.post(ourl+"/send_data_log", json=data_P)#send that variable to the server with a post request
         if response.status_code == 200:# if a code 200(all good) has been returned from the server then  it will print that the password is valid
             print("Password validation status received")
             # You can extract the password validation status from the response text
@@ -87,7 +99,7 @@ while True:#a while true loop that the account login is inbeted in
                     "name": name_new,
                     "password": password_new
                 }
-                response = requests.post("http://localhost:5000/send_data_log_new", json=data_P_New)#send it to the server
+                response = requests.post(ourl+"/send_data_log_new", json=data_P_New)#send it to the server
                 password_validation_status = "succses"#sets the validation status to true can be a issue as you can spoof this 
                 break#breaks so that the user can continue
             elif WAP.upper() == "N":#if the user does not want to make a account then it will let them go on but most feachers wont work
@@ -120,7 +132,7 @@ if password_validation_status == ("succses"):#checks if the password is vaild
                 "name": name,
                 "password": password
             }
-            response = requests.post("http://localhost:5000/send_data_level", json=data_N)#send the name and the password to the server (is used as a id)
+            response = requests.post(ourl+"/send_data_level", json=data_N)#send the name and the password to the server (is used as a id)
 
             level = response.text#gets the respones from the server and makes it in to a progress bare
             levelprogres = lev0
@@ -154,7 +166,7 @@ if password_validation_status == ("succses"):#checks if the password is vaild
                 "password": password,
                 "class": newclass
             }
-            response = requests.post("http://localhost:5000/send_data_new_class", json=data_C)#sends it to the server
+            response = requests.post(ourl+"/send_data_new_class", json=data_C)#sends it to the server
 
         elif WhatToDo == ("4"):# if the user selects the 4 option
             output = ("\n")#clears the var and gives it a new line
@@ -174,7 +186,7 @@ if password_validation_status == ("succses"):#checks if the password is vaild
                 outputadd = ('\nquestion_1 = "' + question + '"\nanswer_1 = "' + answer + '"\nprint(question_1)\nuser_answer_1 = input("Your answer: ")\nif user_answer_1 == answer_1:\n    print("Correct!")\n    score += 1\nelse:\n    print("Incorrect. The correct answer is", answer_1)\nprint ("score " + str(score))')# basic code for a python quiz, adds the variables to the code
                 output = (str(output) + "\n" + str(outputadd))#adds the out put the the other outputs
 
-            output = ('score = 0' + output + '\ndata_S = {\n            "name": name,\n            "password": password,\n            "score": str(score)\n        }\nprint (data_S)\nresponse = requests.post("http://localhost:5000/send_data_score", json=data_S)\n')#adds server intergration
+            output = ('score = 0' + output + '\ndata_S = {\n            "name": name,\n            "password": password,\n            "score": str(score)\n        }\nprint (data_S)\nresponse = requests.post(ourl+"/send_data_score", json=data_S)\n')#adds server intergration
 
             wantstoseethecode = input("do you want to see the code?Y/N...")#asks if the code should be printed
             if wantstoseethecode == ("Y"):#if yes prints the code
@@ -195,10 +207,10 @@ if password_validation_status == ("succses"):#checks if the password is vaild
                     "name":"#" + whatisthename + "^",
                     "code": output
                 }            
-                response = requests.post("http://localhost:5000/send_data_new_quiz", json=data_Q)#sends the data to the server
+                response = requests.post(ourl+"/send_data_new_quiz", json=data_Q)#sends the data to the server
 
         elif WhatToDo == ("5"):#if 5 is slected
-            response = requests.get("http://localhost:5000/send_data_ask_quiz")#ask the server for all of the quizes
+            response = requests.get(ourl+"/send_data_ask_quiz")#ask the server for all of the quizes
             contents = response.json()#the response is resived
             formatted_list = [item[1:] for item in contents]  # remove "#" from each string because of the way the names are stored eg #Assinment^:
             formatted_string = ", ".join(formatted_list)  # join strings with comma separator
@@ -207,7 +219,7 @@ if password_validation_status == ("succses"):#checks if the password is vaild
             data_WQ = {#loads it in to a var
                 "quiz":whatquiz
             } 
-            response = requests.post("http://localhost:5000/send_data_quiz", json=data_WQ)#sends the equest to the server
+            response = requests.post(ourl+"/send_data_quiz", json=data_WQ)#sends the equest to the server
             code = response.text#get the return form the server
             print(code)#prints the quiz
             runcode = input ("would you like to run this quiz?Y/N...")#asks if the quiz should be run
@@ -220,7 +232,7 @@ if password_validation_status == ("succses"):#checks if the password is vaild
                 "name": name,
                 "password": password
             }
-            response = requests.post("http://localhost:5000/send_data_view_class", json=data_VC)# sends the data to the server
+            response = requests.post(ourl+"/send_data_view_class", json=data_VC)# sends the data to the server
             poepleinclass = response.text#gets the response
             print ("\n-------------------------------\n" + "class\n-------------------------------\n" + poepleinclass)#prints the people in the class
 
@@ -232,14 +244,14 @@ if password_validation_status == ("succses"):#checks if the password is vaild
                 "name": name,
                 "password": password
             }
-            response = requests.post("http://localhost:5000/class_chat_open", json=data_CH)#sends it to the server
+            response = requests.post(ourl+"/class_chat_open", json=data_CH)#sends it to the server
             printstat = response.text#gets the response
             if printstat == "servers full pleses wait":#if the servers are full 
                 print (printstat)
                 time.sleep(4)#waits so that the user can try again
             else:
                 print ("you are in server", printstat)#prints the server they have been assined to
-                URL = "http://localhost:5000/" + printstat#sets what the new url will be
+                URL = ourl+"/" + printstat#sets what the new url will be
                 print (URL)#prints it for error checking
                 URL2 = URL + "r"#sets the read url
                 retur = "joined"#tells the server that you have joined 
@@ -256,7 +268,7 @@ if password_validation_status == ("succses"):#checks if the password is vaild
                             "name": name,
                             "password": password
                         }
-                        response = requests.post("http://localhost:5000/class_chat_close", json=data_CHD)#tells the server that you have left that server and if there is no one left then it can be closed
+                        response = requests.post(ourl+"/class_chat_close", json=data_CHD)#tells the server that you have left that server and if there is no one left then it can be closed
                         break#breaks the loop
                     elif retur == "2":#if 2 selected 
                         response = requests.get(URL2)#it will request a refresh from the server
